@@ -1,7 +1,7 @@
 # CyberSecurityBase
 This repository is for Cyber Security Base Project I.  
-It is a translation of a project made in the course TKT20019 Databases and Web Programming to Django.  
-The project was orignally made using Flask, and now it is in Django, and it contains five security vulnerabilities on purpose.  
+It is a translation of a project made in the course TKT20019 Databases and Web Programming.  
+The project was originally made using Flask, and now it is translated to Django, and it contains five security vulnerabilities on purpose.  
 
 It is a very simple fitness application. Users can register, log in, and keep track of their exercises.  
 
