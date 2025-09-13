@@ -31,4 +31,5 @@ The SQL schema is included as schema.sql and can be loaded into an empty databas
 
   .\sqlite3.exe .\database.db ".read schema.sql"
 In such case you also need to migrate Django system tables:
+
   python.exe .\manage.py migrate
