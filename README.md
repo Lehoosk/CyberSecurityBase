@@ -28,6 +28,7 @@ It is a very simple fitness application. Users can register, log in, and keep tr
 Note, the repository contains an example SQLite database (database.db) with a few rows of test data.
 If you need to reset or modify database, you can use sqlite3.exe in the same folder.
 The SQL schema is included as schema.sql and can be loaded into an empty database with:
+
   .\sqlite3.exe .\database.db ".read schema.sql"
 In such case you also need to migrate Django system tables:
-  python manage.py migrate
+  python.exe .\manage.py migrate
