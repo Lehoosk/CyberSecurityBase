@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+  <h1>Create a new account</h1>
+
+  {% if messages %}
+    {% for message in messages %}
+      <p><b>{{ message }}</b></p>
+    {% endfor %}
+  {% endif %}
+
+  <form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+    <p>
+      Username: <br />
+      <input type="text" name="username" />
+    </p>
+    <p>
+      Password: <br />
+      <input type="password" name="password1" />
+    </p>
+    <p>
+      Confirm password: <br />
+      <input type="password" name="password2" />
+    </p>
+    <input type="submit" value="Register" />
+    <p>
+      <input type="checkbox" name="public" id="public" value="1" checked>
+      <label for="public">Show my exercises public by default</label>
+    </p>
+  </form>
+</body>
+</html>

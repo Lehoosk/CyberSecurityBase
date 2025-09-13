@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Edit exercise</title>
+  <link rel="stylesheet" href="/static/main.css">
+</head>
+
+<body><div class="nav">
+  <h3>Edit exercise</h3><p><a href="/">Back</a></p></div>
+
+<div class="content">
+ <form action="/edit/{{ exercise.id }}" method="post">
+  {% csrf_token %}
+    <p>
+      <label for="type">Exercise type:</label><br />
+      <select name="type_id" id="type" required>
+        {% for t in types %}
+          <option value="{{ t.id }}"
+                  {% if t.id == exercise.exercise_type_id %}selected{% endif %}>
+            {{ t.exercise_type_name }}
+          </option>
+        {% endfor %}
+      </select>
+    </p>
+    <p>
+      <label for="weight">Weight (kg):</label><br />
+      <input type="number" name="weight" id="weight" step="0.1" min="0"
+             value="{{ exercise.exercise_weight }}" required />
+    </p>
+    <p>
+      <label for="date">Date:</label><br />
+      <input type="date" name="date" id="date"
+             value="{{ exercise.exercise_date }}" required />
+    </p>
+    <p>
+      <label for="note">Notes:</label><br />
+      <textarea name="note" rows="5" cols="40">{{ exercise.note }}</textarea>
+    </p>
+    <input type="submit" value="Save" />
+  </form>
+
+  </div>
+</body>
+</html>

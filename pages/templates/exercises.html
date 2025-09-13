@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exercises Table</title>
+    <link rel="stylesheet" href="/static/main.css">
+</head>
+<body><div class="nav">
+    <h3>Exercises Table</h3>
+    <p><a href="/">Back</a></p></div>
+<div class="content">
+  <form action="/search" method="get">
+    <p>
+    <p>
+      <label for="type">Search for exercise type:</label><br />
+        <select name="type_id" id="type_id" required>
+            {% for t in types %}
+            <option value="{{ t.id }}">{{ t.exercise_type_name }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <input type="submit" value="Filter" />
+  </form>
+
+    <table border="1" cellpadding="6" cellspacing="0">
+
+        <thead>
+            <tr>
+                <th>Exercise</th>
+                <th>Class</th>
+                <th>Weight </th>
+                <th>Date</th>      
+                <th>Notes</th>
+                <th>Comments</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for exercise in exercises %}
+            <tr>
+                <td>{{ exercise.exercise_type_name }}</td>
+                <td>{{ exercise.label }}</td>
+                <td>{{ exercise.exercise_weight }}</td>
+                <td>{{ exercise.exercise_date }}</td>
+                <td>{{ exercise.note }}</td>
+                <td><a href="/comments/{{ exercise.id }}">{{ exercise.comment_count }}</a></td>
+                <td><a href="/edit/{{ exercise.id }}">Edit</a></td>
+                <td><a href="/remove/{{ exercise.id }}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table></div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Log in</title>
+  <link rel="stylesheet" href="/static/main.css">
+</head>
+
+<body>
+  <div class="content">
+  <h1>Log in</h1>
+  <form action="/login" method="post">
+    {% csrf_token %}
+    <p>
+      Username: <br />
+      <input type="text" name="username" />
+    </p>
+    <p>
+      Password: <br />
+      <input type="password" name="password" />
+    </p>
+    <input type="submit" value="Log in" />
+  </form>
+
+  <hr />
+  <p>
+    <a href="/">Back</a>
+  </p></div>
+</body>
+
+</html>

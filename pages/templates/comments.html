@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Comments</title>
+  <link rel="stylesheet" href="/static/main.css">
+</head>
+
+<body>   <div class="nav">
+  <h3>Leave a comment</h3><a href="/">Back</a></p></div>
+
+  <div class="content">
+  {% for c in comments %}
+  <a href="/user_page/{{c.user_id}}">{{ c.username }}</a> says:
+  {{ c.comment_text }}
+  <br>
+  {% endfor %}
+
+ <form action="/comments/{{ exercise.id }}" method="post">
+  {% csrf_token %}
+    <p>
+      <label for="note">Add comment:</label><br />
+      <textarea name="comment" rows="5" cols="40"></textarea>
+    </p>
+    <input type="submit" value="Post" />
+  </form>
+  <p></div>
+</body>
+</html>

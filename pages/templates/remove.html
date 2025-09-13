@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Remove exercise</title>
+  <link rel="stylesheet" href="/static/main.css">
+</head>
+
+<body>
+  <h1>Remove exercise</h1>
+
+<form action="/remove/{{ exercise.id }}" method="post">
+  {% csrf_token %}
+    <p>
+      Are you sure?
+    </p>
+    <input type="submit" name="remove" value="Confirm" />
+    <input type="submit" name="cancel" value="Cancel" />
+  </form>
+
+  </body>
+
+</html>

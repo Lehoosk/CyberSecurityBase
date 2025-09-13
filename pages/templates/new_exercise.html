@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Post new exercise</title>
+  <link rel="stylesheet" href="/static/main.css">
+</head>
+
+<body><div class="nav">
+  <h3>Post new exercise</h3>
+  <p><a href="/">Back</a></p></div>
+  <div class="content">
+  <form action="/new_exercise" method="post">
+      {% csrf_token %}
+
+    <p>
+      <label for="type">Exercise type:</label><br />
+        <select name="type_id" id="type" required>
+            {% for t in types %}
+            <option value="{{ t.id }}">{{ t.exercise_type_name }}</option>
+            {% endfor %}
+        </select>
+    </p>
+
+    <p>
+      <label for="class">Exercise load:</label><br />
+        <select name="class_id" id="type" required>
+            {% for c in classes %}
+            <option value="{{ c.id }}">{{ c.label }}</option>
+            {% endfor %}
+        </select>
+    </p>
+
+    <p>
+      <label for="value">Weight&nbsp;(kg):</label><br />
+      <input
+        type="number"
+        name="weight"
+        id="weight"
+        min="1"
+        step="0.1"
+        required
+      />
+    </p>
+
+    <p>
+      <label for="date">Date:</label><br />
+      <input
+        type="date"
+        name="date"
+        id="date"
+        required
+      />
+    </p>
+
+    <p>
+      Notes:<br />
+      <textarea name="note" rows="5" cols="40"></textarea>
+    </p>
+
+    <input type="submit" value="Save" />
+
+  <p>
+    <input type="checkbox" name="public" id="public" value="1"
+          {% if default %}checked{% endif %}>
+    <label for="public">Show public</label>
+  </p>
+
+  </form></div>
+</body>
+
+</html>

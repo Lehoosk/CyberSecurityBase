@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>My exercises</title>
+  <link rel="stylesheet" href="/static/main.css">
+</head>
+
+<body><div class="nav">
+  <h3>Edit exercise</h3><p><a href="/">Back</a></p></div>
+
+  <div class="content">
+  {% if types %}
+    <ul>
+      {% for t in types %}
+        <li>
+          {{ t.exercise_type_name }}
+            <form action="/edit_exercise_types" method="post">
+              {% csrf_token %}
+            <input type="hidden" name="delete_id" value="{{ t.id }}" />
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No exercise types</p>
+  {% endif %}
+
+  Add new type:
+  <form action="/edit_exercise_types" method="post">
+    {% csrf_token %}
+    <input type="text" name="name"/>
+    <button type="submit">Add</button>
+  </form>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PowerÄppi</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+  <div class="header">
+    <h1>Welcome to the PowerÄppi</h1>
+  </div>
+
+  <div class="nav">
+    <p>
+      <a href="/register">Create a new account</a> |
+      {% if request.session.user_id %}
+        <a href="/logout">Log out</a>
+      {% else %}
+        <a href="/login">Log in</a>
+      {% endif %}
+    </p>
+  </div>
+
+  {% if request.session.user_id %}
+    <div class="nav">
+      <p>
+        <a href="/new_exercise">Log new exercise</a> | 
+        <a href="/exercises">Show my exercise history</a> |
+        <a href="/edit_exercise_types">Manage my exercise types</a> |
+        <a href="/stats">My exercise statistics</a> |
+        <a href="/user_page">My user page</a>
+      </p>
+    </div>  {# ← siirretty </div> if-blokin sisään #}
+  {% endif %}
+
+  {% if request.session.user_id %}
+    <div class="content">
+      <table border="1" cellpadding="6" cellspacing="0">
+        <thead>
+          <tr>
+            <th>User name</th>
+            <th>Exercise type</th>
+            <th>Exercise class</th>
+            <th>Weight</th>
+            <th>Date</th>      
+            <th>Notes</th>
+            <th>Comments</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for exercise in exercises %}
+          <tr>
+            <td><a href="/user_page/{{ exercise.user_id }}">{{ exercise.username }}</a></td>
+            <td>{{ exercise.exercise_type_name }}</td>
+            <td>{{ exercise.label }}</td>
+            <td>{{ exercise.exercise_weight }}</td>
+            <td>{{ exercise.exercise_date }}</td>
+            <td>{{ exercise.note }}</td>
+            <td><a href="/comments/{{ exercise.id }}">{{ exercise.comment_count }}</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+</body>
+</html>
